@@ -87,8 +87,8 @@ Clone this repository to your desired folder:
 Install this project with:
 
 ```sh
-  Install dependencies: run bundle install
-  Set up the database: run rails db:setup
+  Install dependencies: bundle install
+  Set up the database: rails db:setup
 ```
 
 ### Usage
