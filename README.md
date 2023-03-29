@@ -25,9 +25,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [your_project_name] <a name="about-project"></a>
+# 📖 My Blog App <a name="about-project"></a>
 
-**[My Blog App]** is a Ruby on Rails blog web application that allows users to create posts, comment on posts, and like posts. The application provides an easy-to-use interface for creating and managing posts, and allows users to interact with each other's posts through comments and likes.
+> **My Blog App** is a Ruby on Rails blog web application that allows users to create posts, comment on posts, and like posts. The application provides an easy-to-use interface for creating and managing posts, and allows users to interact with each other's posts through comments and likes.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -41,11 +41,11 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Users can create, edit, and delete posts]**
-- **[Users can comment on posts]**
-- **[User authentication]**
-- **[Simple UI]**
-- **[Postgres database]**
+- **Users can create, edit, and delete posts**
+- **Users can comment on posts**
+- **User authentication**
+- **Simple UI**
+- **Postgres database**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -67,11 +67,11 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need to install:
 
-Ruby [Link](https://rubyinstaller.org/)
+1. Ruby: [For Windows](https://rubyinstaller.org/) / [Others](https://www.ruby-lang.org/en/documentation/installation/)
 ```sh
   run gem install rails
 ```
-Postgres [Link](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
+2. Postgres: [Download Link](https://www.postgresql.org/download/)
 
 ### Setup
 
@@ -122,9 +122,9 @@ To deploy the app, follow the standard procedure for deploying a Ruby on Rails a
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Add image upload functionality for posts]**
-- [ ] **[Implement pagination for posts and comments]**
-- [ ] **[Add search functionality for posts]**
+- [ ] **Add image upload functionality for posts**
+- [ ] **Implement pagination for posts and comments**
+- [ ] **Add search functionality for posts**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
