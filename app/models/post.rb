@@ -5,4 +5,12 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :text, presence: true
+
+  def update_posts_counter
+    update(posts_count: likes.count + comments.count)
+  end
+
+  def recent_comments
+    comments.order(created_at: :desc).limit(5)
+  end
 end
