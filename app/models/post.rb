@@ -4,15 +4,22 @@ class Post < ApplicationRecord
   has_many :likes
 
   validates :title, presence: true, length: { maximum: 250 }
-  validates :text, presence: true
-  validates :comments_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :likes_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :comments_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :likes_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
-  def update_posts_counter
-    update(posts_count: likes.count + comments.count)
+  def update_user_posts_counter
+    author.increment!(:post_counter)
   end
 
-  def recent_comments
-    comments.order(created_at: :desc).limit(5)
+  def recent_comments(limit = 5)
+    comments.order(created_at: :desc).limit(limit)
+  end
+
+  def update_comments_counter
+    update(comments_counter: comments.count)
+  end
+
+  def update_likes_counter
+    update(likes_counter: likes.count)
   end
 end
