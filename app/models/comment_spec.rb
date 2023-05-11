@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
   let(:user) { User.create(name: 'John Doe') }
   let(:post) { Post.create(title: 'Test Post', text: 'Lorem ipsum', author: user) }
-  let(:comment) { Comment.new(text: 'Great post!', author: user, post: post) }
+  let(:comment) { Comment.new(text: 'Great post!', author: user, post:) }
 
   describe 'validations' do
     it 'is valid with valid attributes' do
