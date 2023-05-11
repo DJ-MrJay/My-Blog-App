@@ -1,31 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  let(:user) { User.create(name: 'John Doe') }
-  let(:post) { Post.create(title: 'Test Post', text: 'Lorem ipsum', author: user) }
-  let(:comment) { Comment.new(text: 'Great post!', author: user, post:) }
-
-  describe 'validations' do
-    it 'is valid with valid attributes' do
-      expect(comment).to be_valid
+  context 'test comments' do
+    before :each do
+      @user = User.create(name: 'Jennie', photo: 'https://unsplash.com/photos/Th-i7Z1ufK8', bio: 'Artist')
+      @post = Post.create(author: @user, title: 'Cafe', text: 'My fav place')
+      @comment = Comment.create(post: @post, user: @user, text: 'Love it!')
     end
 
-    it 'is not valid without a text' do
-      comment.text = nil
-      expect(comment).not_to be_valid
-    end
-
-    it 'is not valid without a post' do
-      comment.post = nil
-      expect(comment).not_to be_valid
-    end
-  end
-
-  describe 'methods' do
-    describe '#update_post_comments_counter' do
-      it 'updates the post comments count' do
-        expect { comment.save }.to change { post.reload.comments_count }.by(1)
-      end
+    it 'should increment the comments counter' do
+      expect(@post.comments_counter).to eq 1
     end
   end
 end

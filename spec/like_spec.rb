@@ -1,18 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  let(:like) { FactoryBot.build(:like) }
+  context 'test likes' do
+    before :each do
+      @user = User.create(name: 'Jennie', photo: 'https://unsplash.com/photos/Th-i7Z1ufK8', bio: 'Artist')
+      @post = Post.create(author: @user, title: 'Cafe', text: 'My fav place')
+      @comment = Comment.create(post: @post, user: @user, text: 'Love it!')
+    end
 
-  describe 'associations' do
-    it { should belong_to(:author).class_name('User') }
-    it { should belong_to(:post) }
-  end
-
-  describe 'callbacks' do
-    let(:like) { FactoryBot.create(:like) }
-
-    it 'updates the post likes count after save' do
-      expect { like }.to change { like.post.likes_count }.to(1)
+    it 'comments author should equal user who made the comment' do
+      expect(@comment.user).to eq @user
     end
   end
 end

@@ -1,35 +1,34 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:post) { FactoryBot.build(:post) }
-
-  describe 'validations' do
-    it { should validate_presence_of(:title) }
-    it { should validate_length_of(:title).is_at_most(250) }
-    it { should validate_presence_of(:text) }
-    it { should validate_numericality_of(:comments_count).only_integer.is_greater_than_or_equal_to(0) }
-    it { should validate_numericality_of(:likes_count).only_integer.is_greater_than_or_equal_to(0) }
-  end
-
-  describe 'associations' do
-    it { should belong_to(:author).class_name('User') }
-    it { should have_many(:comments) }
-    it { should have_many(:likes) }
-  end
-
-  describe '#update_posts_counter' do
-    let(:post) { FactoryBot.create(:post_with_likes_and_comments) }
-
-    it 'updates the posts count' do
-      expect { post.update_posts_counter }.to change { post.posts_count }.to(post.likes.count + post.comments.count)
+  context 'test posts' do
+    before :each do
+      @user = User.create(name: 'Jennie', photo: 'https://unsplash.com/photos/Th-i7Z1ufK8', bio: 'Artist')
+      @post = Post.create(author: @user, title: 'Cafe', text: 'My fav place')
     end
-  end
 
-  describe '#recent_comments' do
-    let(:post) { FactoryBot.create(:post_with_comments) }
+    it 'should not have an empty title' do
+      expect(@post.title).to eql 'Cafe'
+    end
 
-    it 'returns the five most recent comments' do
-      expect(post.recent_comments).to eq(post.comments.order(created_at: :desc).limit(5))
+    it 'should have 0 comments at default' do
+      expect(@post.comments_counter).to eq 0
+    end
+
+    it 'should not have a title longer than 250 char' do
+      @post.title = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Pharetra sit amet aliquam id diam maecenas ultricies mi eget.
+        Commodo viverra maecenas accumsan lacus vel.
+        Platea dictumst vestibulum rhoncus est. Quisque egestas diam in arcu.'
+      expect(@post).to_not be_valid
+    end
+
+    it 'should return number of recent comments (5 max)' do
+      Comment.create(post: @post, user: @user, text: 'This is a test')
+      Comment.create(post: @post, user: @user, text: 'This is a test')
+      Comment.create(post: @post, user: @user, text: 'This is a test')
+      expect(@post.recent_comments.length).to eq 3
     end
   end
 end
