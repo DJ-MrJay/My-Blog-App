@@ -12,9 +12,9 @@ class CommentsController < ApplicationController
     @comment.post = @post
 
     if @comment.save
-      redirect_to user_post_path(@user, @post), notice: "Comment created successfully."
+      redirect_to user_post_path(@user, @post), notice: 'Comment created successfully.'
     else
-      redirect_to user_post_path(@user, @post), alert: "Failed to create comment."
+      redirect_to user_post_path(@user, @post), alert: 'Failed to create comment.'
     end
   end
 
@@ -24,5 +24,3 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:text)
   end
 end
-
-
