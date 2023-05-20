@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My</title>
+    <title>My Blog App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application",
+    "http://fonts.googleapis.com/css?family=Inter",
+    "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="d-flex">
+      <h1>My Blog App</h1>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

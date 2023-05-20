@@ -1,7 +1,26 @@
-<h1>User Profile</h1>
-<p>Name: <%= @user.name %></p>
-<p>Posts Counter: <%= @user.posts_counter %></p>
-
-<h1>Post Details</h1>
-<h2><%= @post.title %></h2>
-<p><%= @post.content %></p>
+<section class="p-sm mb-section">
+  <div class="post-detail border d-flex">
+    <div class="post-detail-bdy">
+      <h3>Post #<%= @post.id %>
+        by
+        <%= @post.author.name %></h3>
+      <div class="d-flex mb-sm-2">
+        <span class="comments mr-sm sp-fs">Comments:
+          <%= @post.comments_counter || 0 %>,
+        </span>
+        <span class="likes sp-fs">Likes:
+          <%= @post.likes_counter || 0 %>
+        </span>
+      </div>
+    </div>
+    <p class="post-text color">
+      <%= @post.text %>
+    </p>
+  </div>
+  <ul class="comment border">
+    <li class="list-group-item">Comments:</li>
+    <% @comments.each do |comment| %>
+      <li class="list-group-item"><%= comment.author.name %>: <%= comment.text %></li>
+    <% end %>
+  </ul>
+</section>
