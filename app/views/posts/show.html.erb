@@ -1,26 +1,26 @@
 <section class="p-sm mb-section">
   <div class="post-detail border d-flex">
     <div class="post-detail-bdy">
-      <h3>Post #<%= @post.id %>
-        by
-        <%= @post.author.name %></h3>
+      <h3>Post #<%= @post.id %> by <%= @post.author.name %></h3>
       <div class="d-flex mb-sm-2">
-        <span class="comments mr-sm sp-fs">Comments:
-          <%= @post.comments_counter || 0 %>,
-        </span>
-        <span class="likes sp-fs">Likes:
-          <%= @post.likes_counter || 0 %>
-        </span>
+        <span class="comments mr-sm text-secondary">Comments: <%= @post.comments_counter || 0 %>,</span>
+        <span class="likes text-secondary">Likes: <%= @post.likes_counter || 0 %></span>
       </div>
     </div>
-    <p class="post-text color">
-      <%= @post.text %>
-    </p>
+    <p class="post-text text-dark"> <%= @post.text %> </p>
   </div>
-  <ul class="comment border">
-    <li class="list-group-item">Comments:</li>
+  <div>
+    <%= form_with model: @like, url: user_post_likes_path(@user, @post) do |form| %>
+      <%= form.submit 'Like', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <ul class="comment border d-flex">
+    Comments:
     <% @comments.each do |comment| %>
-      <li class="list-group-item"><%= comment.author.name %>: <%= comment.text %></li>
+      <li class="user-bio-div"><%= comment.author.name %>: <%= comment.text %></li>
     <% end %>
   </ul>
 </section>
+<button class="see-all-post btn btn-secondary">
+  <%= link_to "Create new comment", new_user_post_comment_path(@user, @post) %>
+</button>
