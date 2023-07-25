@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post = @user.posts.new(posts_params)
 
     if @post.save
-      @post.update_post_counter
+      @post.update_user_posts_counter
       redirect_to @post
     else
       render :new, status: :unprocessable_entity
@@ -31,6 +31,6 @@ class PostsController < ApplicationController
   private
 
   def posts_params
-    params.require(:posts).permit(:title, :text)
+    params.require(:post).permit(:title, :text)
   end
 end
