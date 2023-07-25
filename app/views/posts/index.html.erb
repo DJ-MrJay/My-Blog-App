@@ -1,39 +1,39 @@
 <section>
-  <div>
+  <div class="user-container">
     <div>
-      <img src="<%= @user.photo %>" alt="User Avatar" />
+      <img class="avatar" src="<%= @user.photo %>" alt="User Avatar"/>
     </div>
 
-    <div>
+    <div class="user-name-posts">
       <a href="/users/<%= @user.id %>/posts">
         <h2><%= @user.name %></h2>
-        <p>Number of posts: <%= @user.posts_counter || 0 %></p>
+        <p class="posts-number">Number of posts:
+          <%= @user.posts_counter || 0 %></p>
       </a>
     </div>
   </div>
 
-  <div>
+  <div class="post-comments-container">
     <% @posts.each_with_index do |post, index| %>
       <a href="posts/<%= post.id %>">
-        <div>
-          <h3>Post #<%= index + 1 %></h3>
-          <p><%= post.text %></p>
-          <div>
-            <span>Comments: <%= post.comments_counter || 0 %>,</span>
-            <span>Likes: <%= post.likes_counter || 0 %></span>
-          </div>
-        </div>
+        <h3>Post #<%= index + 1 %></h3>
       </a>
+      <p><%= post.text %></p>
 
-      <ul>
-        <li>Comments:</li>
-        <div>
-          <% post.recent_comments.each do |comment| %>
-            <li><%= comment.author.name %>: <%= comment.text %></li>
-          <% end %>
-        </div>
-      </ul>
+      <div class="comments-likes">
+        <span>Comments:
+          <%= post.comments_counter || 0 %>,</span>
+        <span>Likes:
+          <%= post.likes_counter || 0 %></span>
+      </div>
+
+      <div class="comments-container">
+        <p>Comments:</p>
+        <% post.recent_comments.each do |comment| %>
+          <p><%= comment.author.name %>:
+            <%= comment.text %></p>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </section>
-

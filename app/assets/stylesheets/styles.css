@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+.user-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.avatar {
+    max-height: 150px;
+    border-radius: 5px;
+}
+
+.user-name-posts {
+    border-radius: 5px;
+    background-color: lightblue;
+    width: 100%;
+    padding: 25px;
+}
+
+.posts-number {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+}
+
+.bio-container {
+    border-radius: 5px;
+    background-color: #fffdd0;
+    width: 100%;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.comments-likes {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+}
+
+.post-container {
+    border-radius: 5px;
+    background-color: lightgray;
+    width: 100%;
+    padding: 25px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.comments-container {
+    border-radius: 5px;
+    background-color: yellowgreen;
+    width: 100%;
+    padding: 25px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.post-comments-container {
+    border-radius: 5px;
+    background-color: lightgray;
+    width: 100%;
+    padding: 25px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+button {
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

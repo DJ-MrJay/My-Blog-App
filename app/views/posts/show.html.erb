@@ -4,7 +4,7 @@
       <h3>Post #<%= @post.id %>
         by
         <%= @post.author.name %></h3>
-      <div>
+      <div class="comments-likes">
         <span>Comments:
           <%= @post.comments_counter || 0 %>,</span>
         <span>Likes:
@@ -17,7 +17,7 @@
   </div>
   <div>
     <%= form_with model: @like, url: user_post_likes_path(@user, @post) do |form| %>
-      <%= form.submit "Like", class: "btn btn-primary" %>
+      <%= form.submit "Like" %>
     <% end %>
   </div>
   <ul>
