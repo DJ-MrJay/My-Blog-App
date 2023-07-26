@@ -22,8 +22,10 @@ class PostsController < ApplicationController
 
     if @post.save
       @post.update_user_posts_counter
+      flash[:notice] = 'Your post was created successfully'
       redirect_to user_post_path(@user, @post)
     else
+      flash[:notice] = 'Sorry, post was not created successfully'
       render :new, status: :unprocessable_entity
     end
   end
