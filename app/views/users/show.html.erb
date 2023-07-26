@@ -36,6 +36,12 @@
   </div>
 
   <div class="button-container">
-    <button href="<%= @user.id %>/posts">See all posts</button>
+    <button>
+      <%= link_to "See all posts", user_posts_path(@user) %>
+    </button>
+
+    <button>
+      <%= link_to "Create post", new_user_post_path(@user) %>
+    </button>
   </div>
 </section>

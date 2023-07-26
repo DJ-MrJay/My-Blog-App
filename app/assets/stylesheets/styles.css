@@ -46,6 +46,12 @@
     right: 25px;
 }
 
+.comments-likes-alt {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+
 .post-container {
     border-radius: 5px;
     background-color: lightgray;
@@ -57,7 +63,7 @@
 
 .comments-container {
     border-radius: 5px;
-    background-color: yellowgreen;
+    background-color: lightcyan;
     width: 100%;
     padding: 25px;
     margin-bottom: 25px;
@@ -73,13 +79,28 @@
     position: relative;
 }
 
-button {
+button,
+.form-button {
     padding: 5px 20px;
     cursor: pointer;
 }
 
 .button-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+
+.form-input {
+    width: 100%;
+    border: 1px solid lightblue;
+    height: 100px;
+    margin-bottom: 25px;
+    padding: 25px;
+}
+
+.form-input::placeholder {
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }

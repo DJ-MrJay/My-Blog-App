@@ -5,16 +5,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @post = Post.find(params[:post_id])
-    @comment = Comment.new(comment_params)
-    @comment.author = @user
-    @comment.post = @post
+    @comment = @post.comments.new(comment_params)
+    @comment.author = current_user
 
     if @comment.save
-      redirect_to user_post_path(@user, @post), notice: 'Comment created successfully.'
+      redirect_to user_post_path(current_user, @post)
     else
-      redirect_to user_post_path(@user, @post), alert: 'Failed to create comment.'
+      render :new, status: :unprocessable_entity
     end
   end
 
