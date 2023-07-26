@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new
     @post = Post.find(params[:post_id])
   end
+
   def create
     @post = Post.includes(:comments).find(params[:post_id]) # Eager loading comments for the specific post
     @comment = @post.comments.new(comment_params)
@@ -13,7 +14,9 @@ class CommentsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   private
+
   def comment_params
     params.require(:comment).permit(:text)
   end
