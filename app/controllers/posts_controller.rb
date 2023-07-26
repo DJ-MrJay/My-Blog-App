@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts.includes(:comments, :likes) # Eager loading comments and likes for the user's posts
+    # Eager loading comments and likes for the user's posts
+    @posts = @user.posts.includes(:comments, :likes)
   end
 
   def show
     @user = User.find(params[:user_id])
-    @post = @user.posts.includes(:comments, :likes).find(params[:id]) # Eager loading comments and likes for the specific post
+    # Eager loading comments and likes for the specific post
+    @post = @user.posts.includes(:comments, :likes).find(params[:id])
     @comments = @post.comments
     @likes = @post.likes
   end
