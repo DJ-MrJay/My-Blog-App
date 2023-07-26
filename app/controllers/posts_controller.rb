@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.where(author_id: params[:user_id])
     @user = User.find(params[:user_id])
+    @posts = @user.posts.includes(:comments, :likes) # Eager loading comments and likes for the user's posts
   end
 
   def show
-    @post = Post.find(params[:id])
     @user = User.find(params[:user_id])
+    @post = @user.posts.includes(:comments, :likes).find(params[:id]) # Eager loading comments and likes for the specific post
     @comments = @post.comments
     @likes = @post.likes
   end
@@ -17,17 +17,16 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id]) # Find the correct user based on the user_id in the URL
+    @user = User.find(params[:user_id])
     @post = @user.posts.new(posts_params)
 
     if @post.save
       @post.update_user_posts_counter
-      redirect_to user_post_path(@user, @post) # Redirect to the show page of the newly created post
+      redirect_to user_post_path(@user, @post)
     else
       render :new, status: :unprocessable_entity
     end
   end
-
 
   private
 
