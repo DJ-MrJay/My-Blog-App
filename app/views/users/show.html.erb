@@ -21,7 +21,7 @@
   <div>
     <% @user.recent_posts.each_with_index do |post, index| %>
       <div class="post-container">
-        <a href="<%=@user.id%>/posts/<%=post.id%>">
+        <a href=<%=user_post_path(@user, post)%>>
           <h3>Post #<%= index + 1 %></h3>
           <p><%= post.text %></p>
           <div class="comments-likes">
