@@ -107,6 +107,12 @@ To deploy the app, follow the standard procedure for deploying a Ruby on Rails a
 - Twitter [link](https://twitter.com/jonah_wambua)
 - LinkedIn [link](https://www.linkedin.com/in/jonah-wambua/)
 
+👤 **James Serengia**
+
+- GitHub [link](https://github.com/serengia)
+- Twitter [link](https://twitter.com/JamesSerengia)
+- LinkedIn [link](https://www.linkedin.com/in/james-serengia/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
