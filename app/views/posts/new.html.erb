@@ -7,7 +7,7 @@
       <% end %>
     </div>
   <% end %>
-  <%= form_with model: @post, url: user_posts_path(@user) do |form| %>
+  <%= form_with model: @post, url: user_posts_path(@user.id) do |form| %>
     <div>
       <%= form.text_field :title, required: true, class: "form-input", placeholder: "Title" %>
     </div>

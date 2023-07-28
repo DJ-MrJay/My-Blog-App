@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def index
     # Eager loading posts for all users
     @users = User.all.includes(:posts)
