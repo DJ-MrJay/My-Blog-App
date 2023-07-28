@@ -13,8 +13,9 @@
   </head>
 
   <body>
-    <header class="d-flex">
-      <h1>My Blog App</h1>
+    <header class="header">
+      <%# <h1>My Blog App</h1> %>
+      <%= render partial: "shared/navbar" %>
     </header>
     <main>
       <p class="notice"><%= notice %></p>
