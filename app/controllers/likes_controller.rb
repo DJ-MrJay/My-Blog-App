@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
   def create
-    @post = Post.find(params[:post_id])
+    @post = Post.includes(:likes).find(params[:post_id]) # Eager loading the likes for the specific post
     @user = current_user
     @like = Like.new(author: @user, post: @post)
     @like.save

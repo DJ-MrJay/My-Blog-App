@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.where(author_id: params[:user_id])
     @user = User.find(params[:user_id])
+    # Eager loading comments and likes for the user's posts
+    @posts = @user.posts.includes(:comments, :likes)
   end
 
   def show
-    @post = Post.find(params[:id])
     @user = User.find(params[:user_id])
+    # Eager loading comments and likes for the specific post
+    @post = @user.posts.includes(:comments, :likes).find(params[:id])
     @comments = @post.comments
     @likes = @post.likes
   end
@@ -17,13 +19,15 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = current_user
+    @user = User.find(params[:user_id])
     @post = @user.posts.new(posts_params)
 
     if @post.save
-      @post.update_post_counter
-      redirect_to @post
+      @post.update_user_posts_counter
+      flash[:notice] = 'Your post was created successfully'
+      redirect_to user_post_path(@user, @post)
     else
+      flash[:notice] = 'Sorry, post was not created successfully'
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,6 +35,6 @@ class PostsController < ApplicationController
   private
 
   def posts_params
-    params.require(:posts).permit(:title, :text)
+    params.require(:post).permit(:title, :text)
   end
 end

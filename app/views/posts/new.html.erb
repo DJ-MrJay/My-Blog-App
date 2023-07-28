@@ -1,21 +1,19 @@
-<section>
-  <h2>New Post</h2>
+<section class="post-container">
+  <h3>New Post</h3>
   <% if @post.errors.any? %>
     <div>
       <% @post.errors.full_messages.each do |message| %>
-      <p><%= message %></p>
+        <p><%= message %></p>
       <% end %>
     </div>
   <% end %>
   <%= form_with model: @post, url: user_posts_path(@user) do |form| %>
     <div>
-      <%= form.label :title, class: "form-label" %>
-      <%= form.text_field :title, required: true, autofocus: true, class: "form-input" %>
+      <%= form.text_field :title, required: true, class: "form-input", placeholder: "Title" %>
     </div>
     <div>
-      <%= form.label :text, class: "form-label" %>
-      <%= form.text_area :text, required: true, autofocus: true, class: "form-input" %>
+      <%= form.text_area :text, required: true, class: "form-input", placeholder: "Your post" %>
     </div>
-    <%= form.submit "submit", class: "form-button" %>
+    <%= form.submit "Submit", class: "form-button" %>
   <% end %>
 </section>

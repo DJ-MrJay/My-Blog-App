@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    # Eager loading posts for all users
+    @users = User.all.includes(:posts)
   end
 
   def show
-    @user = User.find(params[:id])
+    # Eager loading posts, comments, and authors for the specific user
+    @user = User.includes(posts: [{ comments: :author }]).find(params[:id])
   end
 end

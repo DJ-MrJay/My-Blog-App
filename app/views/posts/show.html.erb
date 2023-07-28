@@ -1,26 +1,35 @@
-<section class="p-sm mb-section">
-  <div class="post-detail border d-flex">
-    <div class="post-detail-bdy">
-      <h3>Post #<%= @post.id %> by <%= @post.author.name %></h3>
-      <div class="d-flex mb-sm-2">
-        <span class="comments mr-sm text-secondary">Comments: <%= @post.comments_counter || 0 %>,</span>
-        <span class="likes text-secondary">Likes: <%= @post.likes_counter || 0 %></span>
+<section>
+  <div class="post-container">
+    <div>
+      <h3>Post #<%= @post.id %>
+        by
+        <%= @post.author.name %></h3>
+      <div class="comments-likes-alt">
+        <span>Comments:
+          <%= @post.comments_counter || 0 %>,</span>
+        <span>Likes:
+          <%= @post.likes_counter || 0 %></span>
       </div>
     </div>
-    <p class="post-text text-dark"> <%= @post.text %> </p>
+
+    <h2><%= @post.title %></h2>
+    <p><%= @post.text %></p>
+    <div>
+      <%= form_with model: @like, url: user_post_likes_path(@user, @post) do |form| %>
+        <%= form.submit "Like post" %>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= form_with model: @like, url: user_post_likes_path(@user, @post) do |form| %>
-      <%= form.submit 'Like', class: 'btn btn-primary' %>
+
+  <div class="comments-container">
+    <h4>Comments:</h4>
+    <% @comments.includes(:author).each do |comment| %>
+      <p class="user-bio-div"><%= comment.author.name %>:
+        <%= comment.text %></p>
     <% end %>
+
+    <button>
+      <%= link_to "Create new comment", new_user_post_comment_path(@user, @post) %>
+    </button>
   </div>
-  <ul class="comment border d-flex">
-    Comments:
-    <% @comments.each do |comment| %>
-      <li class="user-bio-div"><%= comment.author.name %>: <%= comment.text %></li>
-    <% end %>
-  </ul>
 </section>
-<button class="see-all-post btn btn-secondary">
-  <%= link_to "Create new comment", new_user_post_comment_path(@user, @post) %>
-</button>
