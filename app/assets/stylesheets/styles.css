@@ -6,6 +6,18 @@
   scroll-behavior: smooth;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  padding: 0;
+  gap: 2rem;
+}
+
 .user-container {
   display: flex;
   flex-direction: row;
