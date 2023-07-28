@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <h1>
+    <%= link_to "My Blog App", root_path %>
+  </h1>
+  <ul class="menu">
+    <% if user_signed_in? %>
+      <li>
+        Welcome,
+        <span style="">
+          <%= current_user.name %>
+        </span>
+      </li>
+
+      <li>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
