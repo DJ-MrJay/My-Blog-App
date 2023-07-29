@@ -14,9 +14,15 @@
 
     <h2><%= @post.title %></h2>
     <p><%= @post.text %></p>
-    <div>
+    <div class="button-container">
       <%= form_with model: @like, url: user_post_likes_path(@user, @post) do |form| %>
-        <%= form.submit "Like post" %>
+        <%= form.submit "Like Post", class: "like-button" %>
+      <% end %>
+
+      <% if can? :destroy, @post %>
+        <%= form_with url: user_post_path(@user, @post), method: :delete do %>
+          <button>Delete Post</button>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -24,12 +30,18 @@
   <div class="comments-container">
     <h4>Comments:</h4>
     <% @comments.includes(:author).each do |comment| %>
-      <p class="user-bio-div"><%= comment.author.name %>:
+      <p><strong><%= comment.author.name %>:</strong>
         <%= comment.text %></p>
+      <% if can? :destroy, comment %>
+        <%= form_with url: user_post_comment_path(@user, @post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <button class="delete-button">Delete Comment</button>
+        <% end %>
+      <% end %>
+      <hr>
     <% end %>
-
-    <button>
-      <%= link_to "Create new comment", new_user_post_comment_path(@user, @post) %>
-    </button>
   </div>
+
+  <button>
+    <%= link_to "Create New Comment", new_user_post_comment_path(@user, @post) %>
+  </button>
 </section>

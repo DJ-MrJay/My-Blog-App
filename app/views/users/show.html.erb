@@ -7,7 +7,7 @@
     <div class="user-name-posts">
       <div>
         <h1><%= @user.name %></h1>
-        <p class="posts-number">Number of posts:
+        <p class="posts-number">Number of Posts:
           <%= @user.posts_counter || 0 %></p>
       </div>
     </div>
@@ -24,24 +24,27 @@
         <a href=<%=user_post_path(@user, post)%>>
           <h3>Post #<%= index + 1 %></h3>
           <p><%= post.text %></p>
-          <div class="comments-likes">
-            <span>Comments:
-              <%= post.comments_counter || 0 %>,</span>
-            <span>Likes:
-              <%= post.likes_counter || 0 %></span>
-          </div>
+          <br>
         </a>
+        <div class="comments-likes">
+          <span>Comments:
+            <%= post.comments_counter || 0 %>,</span>
+          <span>Likes:
+            <%= post.likes_counter || 0 %></span>
+        </div>
       </div>
     <% end %>
   </div>
 
   <div class="button-container">
     <button>
-      <%= link_to "See all posts", user_posts_path(@user) %>
+      <%= link_to "See All Posts", user_posts_path(@user) %>
     </button>
 
-    <button>
-      <%= link_to "Create post", new_user_post_path(@user) %>
-    </button>
+    <% if @user.id==current_user.id || current_user.role=='admin' %>
+      <button>
+        <%= link_to "Create New Post", new_user_post_path(@user) %>
+      </button>
+    <% end %>
   </div>
 </section>
