@@ -24,7 +24,6 @@ class CommentsController < ApplicationController
     user = @comment.author_id
     post = @comment.post_id
 
-
     if @comment.destroy
       flash[:success] = 'Comment was successfully deleted.'
     else
