@@ -42,11 +42,10 @@ class PostsController < ApplicationController
     post.likes.destroy_all
     if post.destroy
       flash[:success] = 'Post deleted successfully.'
-      redirect_to users_path
     else
       flash.now[:error] = 'Error: Post could not be deleted.'
-      redirect_to users_path
     end
+    redirect_to users_path
   end
 
   private
