@@ -9,7 +9,6 @@ class Api::PostsController < Api::ApplicationController
   private
 
   def incoming_author
-    author_id = params[:user_id]
-    author = User.find(author_id)
+    @author = User.find(params[:user_id])
   end
 end
