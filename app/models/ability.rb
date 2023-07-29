@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     # Define abilities for different user roles
-    if user.admin?
+    if user.role == 'admin'
       can :manage, :all # Admin can manage all resources
     else
       can :read, :all

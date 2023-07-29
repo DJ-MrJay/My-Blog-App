@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    @post = @user.posts.new(posts_params)
+    @post = Post.new(post_params)
     @post.author = @user
 
     if @post.save
