@@ -41,7 +41,7 @@
     <% end %>
 
     <% if can? :destroy, @post %>
-      <% if @post.comments_counter.to_i > 0 %> <!-- Add this conditional check -->
+      <% if @post.comments_counter.to_i > 0 %>
         <%= form_with url: user_post_path(@user, @post), method: :delete, data: { confirm: 'Are you sure?' } do %>
           <button>Delete Comment</button>
         <% end %>
@@ -53,4 +53,3 @@
     <%= link_to "Create New Comment", new_user_post_comment_path(@user, @post) %>
   </button>
 </section>
-

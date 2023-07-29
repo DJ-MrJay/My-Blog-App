@@ -7,7 +7,7 @@
     <div class="user-name-posts">
       <div>
         <h1><%= @user.name %></h1>
-        <p class="posts-number">Number of posts:
+        <p class="posts-number">Number of Posts:
           <%= @user.posts_counter || 0 %></p>
       </div>
     </div>
@@ -24,13 +24,14 @@
         <a href=<%=user_post_path(@user, post)%>>
           <h3>Post #<%= index + 1 %></h3>
           <p><%= post.text %></p>
-          <div class="comments-likes">
-            <span>Comments:
-              <%= post.comments_counter || 0 %>,</span>
-            <span>Likes:
-              <%= post.likes_counter || 0 %></span>
-          </div>
+          <br>
         </a>
+        <div class="comments-likes">
+          <span>Comments:
+            <%= post.comments_counter || 0 %>,</span>
+          <span>Likes:
+            <%= post.likes_counter || 0 %></span>
+        </div>
       </div>
     <% end %>
   </div>
