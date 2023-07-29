@@ -26,10 +26,21 @@
     <% @comments.includes(:author).each do |comment| %>
       <p class="user-bio-div"><%= comment.author.name %>:
         <%= comment.text %></p>
+      <% if can? :destroy, comment %>
+        <%= form_with url: user_post_comment_path(@user, @post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <button class="delete-button">Delete</button>
+        <% end %>
+      <% end %>
     <% end %>
 
     <button>
       <%= link_to "Create new comment", new_user_post_comment_path(@user, @post) %>
     </button>
+
+    <% if can? :destroy, @post %>
+      <%= form_with url: user_post_path(@user, @post), method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <button>Delete</button>
+      <% end %>
+    <% end %>
   </div>
 </section>

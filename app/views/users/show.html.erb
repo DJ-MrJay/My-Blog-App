@@ -37,11 +37,19 @@
 
   <div class="button-container">
     <button>
-      <%= link_to "See all posts", user_posts_path(@user) %>
+      <%= link_to "See All Posts", user_posts_path(@user) %>
     </button>
 
-    <button>
-      <%= link_to "Create post", new_user_post_path(@user) %>
-    </button>
+    <% if @user.id==current_user.id || current_user.role=='admin' %>
+      <button>
+        <%= link_to "Create Post", new_user_post_path(@user) %>
+      </button>
+    <% end %>
+
+    <% if can? :destroy, @user %>
+      <%= form_with url: user_path(@user.id), method: :delete do %>
+        <button>Delete Post</button>
+      <% end %>
+    <% end %>
   </div>
 </section>
