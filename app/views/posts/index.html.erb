@@ -3,43 +3,44 @@
     <div class="avatar-container">
       <img class="avatar" src="<%= @user.photo %>" alt="User Avatar"/>
     </div>
-
     <div class="user-name-posts">
       <a href="/users/<%= @user.id %>/posts">
         <h2><%= @user.name %></h2>
         <p class="posts-number">Number of posts:
-          <%= @user.posts_counter || 0 %></p>
+          <%= @user.posts_counter || 0 %>
+        </p>
       </a>
     </div>
   </div>
 
-  <div>
-    <% @posts.includes(comments:[:author]).each_with_index do |post, index| %>
-      <%= link_to  user_post_path(@user, post.id) do %>
-        <div class="post-container">
-          <h3>Post #<%= index + 1 %></h3>
-          <h3><%= post.title %></h3>
-          <p><%= post.text %></p>
-          <div class="comments-likes">
-            <span>Comments:
-              <%= post.comments_counter || 0 %>,
-            </span>
-            <span>Likes:
-              <%= post.likes_counter || 0 %></span>
-          </div>
+  <% @posts.includes(comments:[:author]).each_with_index do |post, index| %>
+    <%= link_to user_post_path(@user, post.id) do %>
+      <div class="post-container">
+        <h3>Post #<%= index + 1 %></h3>
+        <h3><%= post.title %></h3>
+        <p><%= post.text %></p>
+        <div class="comments-likes">
+          <span>Comments:
+            <%= post.comments_counter || 0 %>,
+          </span>
+          <span>Likes:
+            <%= post.likes_counter || 0 %>
+          </span>
         </div>
         <% if can? :destroy, post %>
           <%= form_with url: user_post_path(@user, post), method: :delete do %>
-          <button>Delete</button>
+            <button>Delete Post</button>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
 
       <div class="comments-container">
         <h4>Comments:</h4>
         <% post.comments.each do |comment| %>
-          <p><%= comment.author.name %>: <%= comment.text %></p>
+          <p><%= comment.author.name %>:
+            <%= comment.text %></p>
         <% end %>
       </div>
     <% end %>
-  </div>
+  <% end %>
 </section>

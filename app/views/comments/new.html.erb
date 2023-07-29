@@ -1,5 +1,5 @@
 <section class="comments-container">
-  <h3>New comment</h3>
+  <h3>New Comment</h3>
   <%= form_with model: @comment, url: user_post_comments_path(@post) do |form| %>
     <div>
       <%= form.text_field :text,

@@ -42,14 +42,8 @@
 
     <% if @user.id==current_user.id || current_user.role=='admin' %>
       <button>
-        <%= link_to "Create Post", new_user_post_path(@user) %>
+        <%= link_to "Create New Post", new_user_post_path(@user) %>
       </button>
-    <% end %>
-
-    <% if can? :destroy, @user %>
-      <%= form_with url: user_path(@user.id), method: :delete do %>
-        <button>Delete Post</button>
-      <% end %>
     <% end %>
   </div>
 </section>
